@@ -11,7 +11,11 @@
   "author": "yolisses",
   "license": "ISC",
   "devDependencies": {
+    "@types/graphviz": "^0.0.39",
     "ts-morph": "^22.0.0",
     "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "graphviz": "^0.0.9"
   }
 }
