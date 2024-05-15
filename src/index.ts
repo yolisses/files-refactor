@@ -21,10 +21,11 @@ function getGraphvizGraph(files: FileNode[]) {
   const clusters: Record<string, Graph> = {};
 
   files.forEach((file) => {
-    if (!clusters[file.folder.name]) {
-      const folderCluster = g.addCluster("cluster_" + file.folder.name);
-      folderCluster.set("label", file.folder.name);
-      clusters[file.folder.name] = folderCluster;
+    const { folder } = file;
+    if (!clusters[folder.name]) {
+      const folderCluster = g.addCluster("cluster_" + folder.name);
+      folderCluster.set("label", folder.name);
+      clusters[folder.name] = folderCluster;
     }
   });
 
