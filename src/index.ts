@@ -41,7 +41,7 @@ function getGraphvizGraph(files: FileNode[]) {
     const folderCluster = folderClusters[file.folder.name];
 
     const fileNode = folderCluster.addNode(file.name);
-    fileNode.set("label", `${file.name}\n${file.folder.name}`);
+    fileNode.set("label", file.name);
 
     file.imports.forEach((importedFile) => {
       g.addEdge(file.name, importedFile.name);
@@ -58,7 +58,7 @@ function createRandomFiles(count: number) {
   });
 
   files.forEach((file) => {
-    const importsCount = randomInteger(0, 2);
+    const importsCount = randomInteger(0, 1);
     const imports = randomSample(files, importsCount);
     imports.forEach((importedFile) => {
       file.addImport(importedFile);
@@ -70,7 +70,7 @@ function createRandomFiles(count: number) {
 
 function organizeFiles(files: FileNode[]) {
   files.forEach((file) => {
-    const folder = new Folder("folder_" + file.name);
+    const folder = new Folder(file.name);
     file.folder = folder;
   });
 
