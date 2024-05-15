@@ -1,12 +1,10 @@
 import graphviz from "graphviz";
+import { times } from "./times";
 
 // TODO find a better name
 class FileNode {
   constructor(public name: string, public importedFiles: FileNode[]) {}
 }
-
-const file1 = new FileNode("file1", []);
-const file2 = new FileNode("file2", [file1]);
 
 function plotFiles(files: FileNode[]) {
   const g = graphviz.digraph("G");
@@ -19,4 +17,18 @@ function plotFiles(files: FileNode[]) {
   g.output("svg", "output.svg");
 }
 
-plotFiles([file1, file2]);
+function createRandomFiles(count: number) {
+  const files = times(count).map((index) => {
+    return new FileNode(`${index}`, []);
+  });
+  files.forEach((file) => {
+    file.importedFiles = files.filter((f) => {
+      return Math.random() < 0.1;
+    });
+  });
+  return files;
+}
+
+const randomFiles = createRandomFiles(10);
+
+plotFiles(randomFiles);
