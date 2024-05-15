@@ -1,4 +1,5 @@
 import graphviz, { Graph } from "graphviz";
+import { randomInteger } from "./randomInteger";
 import { randomSample } from "./randomSample";
 import { times } from "./times";
 
@@ -11,7 +12,7 @@ class FileNode {
   constructor(
     public name: string,
     public folder: Folder,
-    public importedFiles: FileNode[]
+    public importedBy: FileNode[]
   ) {}
 }
 
@@ -28,42 +29,49 @@ function getGraphvizGraph(files: FileNode[]) {
   });
 
   files.forEach((file) => {
-    const cluster = clusters[file.folder.name];
-    cluster.set("label", file.folder.name);
-    const fileNode = cluster.addNode(file.name);
+    // const cluster = clusters[file.folder.name];
+    // cluster.set("label", file.folder.name);
 
-    file.importedFiles.forEach((importedFile) => {
-      cluster.addEdge(file.name, importedFile.name);
+    const cluster = g;
+    const fileNode = cluster.addNode(file.name);
+    fileNode.set("label", `${file.name}\n${file.folder.name}`);
+    file.importedBy.forEach((importer) => {
+      g.addEdge(importer.name, file.name);
     });
   });
   return g;
 }
 
-function createRandomFiles(count: number) {
-  const folders = times(count).map((index) => {
-    return new Folder(`folder${index}`);
-  });
-
-  const files = times(count).map((index) => {
-    const folder = folders[Math.floor(Math.random() * folders.length)];
-    return new FileNode(`file${index}`, folder, []);
+function createRandomFilesTree() {
+  const rootFolder = new Folder("root");
+  const files = times(10).map((i) => {
+    return new FileNode(`${i}`, rootFolder, []);
   });
 
   files.forEach((file) => {
-    const count = Math.floor(Math.random() * 3);
-    file.importedFiles = randomSample(files, count);
+    const randomNumberOfImports = randomInteger(0, 2);
+    file.importedBy = randomSample(files, randomNumberOfImports);
   });
+
   return files;
 }
 
 function organizeFiles(files: FileNode[]) {
-  const rootFolder = new Folder("root");
   files.forEach((file) => {
-    file.folder = rootFolder;
+    const folder = new Folder("folder_" + file.name);
+    file.folder = folder;
+  });
+
+  const unusedFilesFolder = new Folder("unused_files");
+
+  files.forEach((file) => {
+    if (file.importedBy.length === 0) {
+      file.folder = unusedFilesFolder;
+    }
   });
 }
 
-const randomFiles = createRandomFiles(10);
+const randomFiles = createRandomFilesTree();
 organizeFiles(randomFiles);
 
 const graphvizGraph = getGraphvizGraph(randomFiles);
