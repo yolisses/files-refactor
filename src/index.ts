@@ -1,4 +1,5 @@
 import graphviz, { Graph } from "graphviz";
+import { randomSample } from "./randomSample";
 import { times } from "./times";
 
 class Folder {
@@ -49,9 +50,8 @@ function createRandomFiles(count: number) {
   });
 
   files.forEach((file) => {
-    file.importedFiles = files.filter((f) => {
-      return Math.random() < 0.1;
-    });
+    const count = Math.floor(Math.random() * 3);
+    file.importedFiles = randomSample(files, count);
   });
   return files;
 }
