@@ -6,21 +6,23 @@ class FileNode {
   constructor(public name: string, public importedFiles: FileNode[]) {}
 }
 
-function plotFiles(files: FileNode[]) {
+function getGraphvizGraph(files: FileNode[]) {
   const g = graphviz.digraph("G");
   files.forEach((file) => {
     g.addNode(file.name);
+
     file.importedFiles.forEach((importedFile) => {
       g.addEdge(file.name, importedFile.name);
     });
   });
-  g.output("svg", "output.svg");
+  return g;
 }
 
 function createRandomFiles(count: number) {
   const files = times(count).map((index) => {
-    return new FileNode(`${index}`, []);
+    return new FileNode(`file${index}`, []);
   });
+
   files.forEach((file) => {
     file.importedFiles = files.filter((f) => {
       return Math.random() < 0.1;
@@ -31,4 +33,5 @@ function createRandomFiles(count: number) {
 
 const randomFiles = createRandomFiles(10);
 
-plotFiles(randomFiles);
+const graphvizGraph = getGraphvizGraph(randomFiles);
+graphvizGraph.output("svg", "output.svg");
