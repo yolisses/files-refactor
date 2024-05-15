@@ -1,4 +1,4 @@
-import graphviz from "graphviz";
+import graphviz, { Graph } from "graphviz";
 import { times } from "./times";
 
 class Folder {
@@ -16,9 +16,18 @@ class FileNode {
 
 function getGraphvizGraph(files: FileNode[]) {
   const g = graphviz.digraph("G");
+  const clusters: Record<string, Graph> = {};
 
   files.forEach((file) => {
-    const cluster = g.addCluster("cluster_" + file.folder.name);
+    if (!clusters[file.folder.name]) {
+      const folderCluster = g.addCluster("cluster_" + file.folder.name);
+      folderCluster.set("label", file.folder.name);
+      clusters[file.folder.name] = folderCluster;
+    }
+  });
+
+  files.forEach((file) => {
+    const cluster = clusters[file.folder.name];
     cluster.set("label", file.folder.name);
     const fileNode = cluster.addNode(file.name);
 
@@ -47,7 +56,15 @@ function createRandomFiles(count: number) {
   return files;
 }
 
+function organizeFiles(files: FileNode[]) {
+  const rootFolder = new Folder("root");
+  files.forEach((file) => {
+    file.folder = rootFolder;
+  });
+}
+
 const randomFiles = createRandomFiles(10);
+organizeFiles(randomFiles);
 
 const graphvizGraph = getGraphvizGraph(randomFiles);
 graphvizGraph.output("svg", "output.svg");
