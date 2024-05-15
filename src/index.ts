@@ -34,8 +34,15 @@ function getGraphvizGraph(files: FileNode[]) {
     // cluster.set("label", file.folder.name);
 
     const cluster = g;
+
     const fileNode = cluster.addNode(file.name);
     fileNode.set("label", `${file.name}\n${file.folder.name}`);
+
+    if (file.folder.name === "unused_files") {
+      fileNode.set("style", "filled");
+      fileNode.set("fillcolor", "gray");
+    }
+
     file.importedBy.forEach((importer) => {
       g.addEdge(importer.name, file.name);
     });
@@ -43,9 +50,9 @@ function getGraphvizGraph(files: FileNode[]) {
   return g;
 }
 
-function createRandomFilesTree() {
+function createRandomFilesTree(count: number) {
   const rootFolder = new Folder("root");
-  const files = times(10).map((i) => {
+  const files = times(count).map((i) => {
     return new FileNode(`${i}`, rootFolder, []);
   });
 
@@ -63,16 +70,15 @@ function organizeFiles(files: FileNode[]) {
     file.folder = folder;
   });
 
-  const unusedFilesFolder = new Folder("unused_files");
-
   files.forEach((file) => {
-    if (file.importedBy.length === 0) {
-      file.folder = unusedFilesFolder;
+    if (file.importedBy.length === 1) {
+      const importer = file.importedBy[0];
+      file.folder = importer.folder;
     }
   });
 }
 
-const randomFiles = createRandomFilesTree();
+const randomFiles = createRandomFilesTree(20);
 organizeFiles(randomFiles);
 
 const graphvizGraph = getGraphvizGraph(randomFiles);
