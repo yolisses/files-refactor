@@ -1,0 +1,17 @@
+{
+  "name": "files-refactor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "yolisses",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-morph": "^22.0.0",
+    "ts-node-dev": "^2.0.0"
+  }
+}
