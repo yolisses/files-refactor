@@ -58,7 +58,7 @@ function createRandomFiles(count: number) {
   });
 
   files.forEach((file) => {
-    const importsCount = Math.round(Math.abs(randomNormal() * 4));
+    const importsCount = Math.round(Math.abs(randomNormal() * 5));
     const imports = randomSample(files, importsCount);
     imports.forEach((importedFile) => {
       file.addImport(importedFile);
