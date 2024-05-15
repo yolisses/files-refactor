@@ -1,5 +1,5 @@
 import graphviz, { Graph } from "graphviz";
-import { randomInteger } from "./randomInteger";
+import { randomNormal } from "./randomNormal";
 import { randomSample } from "./randomSample";
 import { times } from "./times";
 
@@ -58,7 +58,7 @@ function createRandomFiles(count: number) {
   });
 
   files.forEach((file) => {
-    const importsCount = randomInteger(0, 1);
+    const importsCount = Math.round(Math.abs(randomNormal() * 4));
     const imports = randomSample(files, importsCount);
     imports.forEach((importedFile) => {
       file.addImport(importedFile);
@@ -82,7 +82,7 @@ function organizeFiles(files: FileNode[]) {
   });
 }
 
-export const randomFiles = createRandomFiles(10);
+export const randomFiles = createRandomFiles(20);
 
 organizeFiles(randomFiles);
 
