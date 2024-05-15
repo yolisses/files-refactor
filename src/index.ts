@@ -8,7 +8,7 @@ class Folder {
 }
 
 // TODO find a better name
-class FileNode {
+export class FileNode {
   imports: FileNode[] = [];
   importedBy: FileNode[] = [];
 
@@ -82,17 +82,8 @@ function organizeFiles(files: FileNode[]) {
   });
 }
 
-const randomFiles = createRandomFiles(5);
+export const randomFiles = createRandomFiles(10);
 
-console.log(
-  randomFiles.map((file) => {
-    return {
-      name: file.name,
-      imports: file.imports.map((importedFile) => importedFile.name),
-      importedBy: file.importedBy.map((importer) => importer.name),
-    };
-  })
-);
 organizeFiles(randomFiles);
 
 const graphvizGraph = getGraphvizGraph(randomFiles);
