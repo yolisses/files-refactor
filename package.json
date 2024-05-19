@@ -16,6 +16,7 @@
     "ts-node-dev": "^2.0.0"
   },
   "dependencies": {
+    "fs": "^0.0.1-security",
     "graphviz": "^0.0.9"
   }
 }
