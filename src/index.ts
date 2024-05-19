@@ -15,14 +15,15 @@ class FileNode {
 }
 
 const root = new Folder("root");
-const folders = [root];
+const folder1 = new Folder("folder1");
+const folders = [root, folder1];
 
 const file1 = new FileNode("1", []);
 const file2 = new FileNode("2", [file1]);
 const file3 = new FileNode("3", [file1, file2]);
 const files = [file1, file2, file3];
 
-root.addFile(file1);
+folder1.addFile(file1);
 root.addFile(file2);
 root.addFile(file3);
 
