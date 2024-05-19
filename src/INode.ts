@@ -1,7 +1,7 @@
 import { Folder } from "./Folder.ts";
 
 export class INode {
-  parent: Folder;
+  parent: Folder | null = null;
   constructor(public name: string) {}
 
   move(newParent: Folder) {

@@ -1,7 +1,9 @@
 {
   "editor.codeActionsOnSave": {
-    "source.organizeImports": "always"
+    "source.organizeImports": "always",
+    "source.addMissingImports": "always"
   },
+  "editor.formatOnSave": true,
   "deno.enable": true,
   "deno.lint": true
 }
