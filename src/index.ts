@@ -1,46 +1,42 @@
-import graphviz, { Graph } from "graphviz";
-import { randomNormal } from "./randomNormal";
-import { randomSample } from "./randomSample";
-import { times } from "./times";
+import { readFileSync } from "fs";
+import { digraph } from "graphviz";
+import { isDefined } from "./isDefined";
 
-class Folder {
-  constructor(public name: string) {}
+const sonhinImports: Record<string, string[]> = JSON.parse(
+  readFileSync("examples/sonhinImports.json", "utf8")
+);
+
+class FileNode {
+  constructor(public name: string, public imports: FileNode[]) {}
 }
 
-// TODO find a better name
-export class FileNode {
-  imports: FileNode[] = [];
-  importedBy: FileNode[] = [];
+const symbolsWithRepetition = Object.entries(sonhinImports)
+  .map(([name, imports]) => {
+    return [name, ...imports];
+  })
+  .flat();
+const symbols = Array.from(new Set(symbolsWithRepetition));
 
-  constructor(public name: string, public folder: Folder) {}
+symbols.sort();
 
-  addImport(file: FileNode) {
-    this.imports.push(file);
-    file.importedBy.push(this);
-  }
-}
+const files = symbols.map((name) => {
+  return new FileNode(name, []);
+});
 
-function createFolderClusters(files: FileNode[], g: Graph) {
-  const clusters: Record<string, Graph> = {};
-  files.forEach((file) => {
-    const { folder } = file;
-    if (!clusters[folder.name]) {
-      const folderCluster = g.addCluster("cluster_" + folder.name);
-      folderCluster.set("label", folder.name);
-      clusters[folder.name] = folderCluster;
-    }
-  });
-  return clusters;
-}
+files.forEach((file) => {
+  const imports = sonhinImports[file.name] || [];
+  file.imports = imports
+    .map((importName) => {
+      return files.find((f) => f.name === importName);
+    })
+    .filter(isDefined);
+});
 
 function getGraphvizGraph(files: FileNode[]) {
-  const g = graphviz.digraph("G");
-  const folderClusters = createFolderClusters(files, g);
+  const g = digraph("G");
 
   files.forEach((file) => {
-    const folderCluster = folderClusters[file.folder.name];
-
-    const fileNode = folderCluster.addNode(file.name);
+    const fileNode = g.addNode(file.name);
     fileNode.set("label", file.name);
 
     file.imports.forEach((importedFile) => {
@@ -50,41 +46,25 @@ function getGraphvizGraph(files: FileNode[]) {
   return g;
 }
 
-function createRandomFiles(count: number) {
-  const rootFolder = new Folder("root");
+function getSonhinGraphvizGraph() {
+  const g = digraph("G");
 
-  const files = times(count).map((i) => {
-    return new FileNode(`${i}`, rootFolder);
-  });
+  Object.entries(sonhinImports)
+    .slice(0)
+    .forEach(([name, imports]) => {
+      const fileNode = g.addNode(name);
+      fileNode.set("label", name);
 
-  files.forEach((file) => {
-    const importsCount = Math.round(Math.abs(randomNormal() * 5));
-    const imports = randomSample(files, importsCount);
-    imports.forEach((importedFile) => {
-      file.addImport(importedFile);
+      imports.forEach((importedFile) => {
+        g.addEdge(name, importedFile);
+      });
     });
-  });
-
-  return files;
+  return g;
 }
 
-function organizeFiles(files: FileNode[]) {
-  files.forEach((file) => {
-    const folder = new Folder(file.name);
-    file.folder = folder;
-  });
-
-  files.forEach((file) => {
-    if (file.importedBy.length === 1 && file.imports.length === 0) {
-      const importer = file.importedBy[0];
-      file.folder = importer.folder;
-    }
-  });
-}
-
-export const randomFiles = createRandomFiles(20);
-
-organizeFiles(randomFiles);
-
-const graphvizGraph = getGraphvizGraph(randomFiles);
+const graphvizGraph = getSonhinGraphvizGraph();
+graphvizGraph.setNodeAttribut("shape", "box");
+graphvizGraph.set("rankdir", "LR");
+graphvizGraph.set("splines", false);
+// const graphvizGraph = getGraphvizGraph(files);
 graphvizGraph.output("svg", "output.svg");
