@@ -1,5 +1,5 @@
-import { FileNode } from "./FileNode";
-import { INode } from "./INode";
+import { FileNode } from "./FileNode.ts";
+import { INode } from "./INode.ts";
 
 export class Folder extends INode {
   depth = 0;

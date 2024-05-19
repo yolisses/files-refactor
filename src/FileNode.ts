@@ -1,5 +1,5 @@
-import { Folder } from "./Folder";
-import { INode } from "./INode";
+import { Folder } from "./Folder.ts";
+import { INode } from "./INode.ts";
 
 // TODO find a better name
 

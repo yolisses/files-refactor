@@ -1,4 +1,4 @@
-import { Folder } from "./Folder";
+import { Folder } from "./Folder.ts";
 
 export class INode {
   parent: Folder;
