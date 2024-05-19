@@ -1,11 +1,18 @@
-import { digraph } from "graphviz";
+import { Graph, digraph } from "graphviz";
 
 class Folder {
   files: FileNode[] = [];
+  subfolders: Folder[] = [];
+  parent: Folder | null = null;
   constructor(public name: string) {}
 
   addFile(file: FileNode) {
     this.files.push(file);
+  }
+
+  addFolder(folder: Folder) {
+    folder.parent = this;
+    this.subfolders.push(folder);
   }
 }
 
@@ -16,7 +23,8 @@ class FileNode {
 
 const root = new Folder("root");
 const folder1 = new Folder("folder1");
-const folders = [root, folder1];
+
+root.addFolder(folder1);
 
 const file1 = new FileNode("1", []);
 const file2 = new FileNode("2", [file1]);
@@ -27,17 +35,20 @@ folder1.addFile(file1);
 root.addFile(file2);
 root.addFile(file3);
 
+function plotFolders(g: Graph, folder: Folder) {
+  const cluster = g.addCluster("cluster_" + folder.name);
+  cluster.set("label", folder.name);
+  folder.files.forEach((file) => {
+    cluster.addNode(file.name);
+  });
+  folder.subfolders.forEach((subfolder) => {
+    plotFolders(cluster, subfolder);
+  });
+}
+
 function createGraphVisualization() {
   const g = digraph("G");
-
-  folders.forEach((folder) => {
-    const cluster = g.addCluster("cluster_" + folder.name);
-    cluster.set("label", folder.name);
-    folder.files.forEach((file) => {
-      cluster.addNode(file.name);
-    });
-  });
-
+  plotFolders(g, root);
   files.forEach((file) => {
     file.imports.forEach((importedFile) => {
       g.addEdge(file.name, importedFile.name);
