@@ -79,7 +79,7 @@ function plotFolders(g: Graph, folder: Folder) {
 
 function createGraphVisualization() {
   const g = digraph("G");
-  g.set("rankdir", "LR");
+  g.set("rankdir", "RL");
 
   plotFolders(g, root);
   files.forEach((file) => {
