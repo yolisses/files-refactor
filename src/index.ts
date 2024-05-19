@@ -1,8 +1,7 @@
-import { Graph, digraph } from "graphviz";
+import { digraph } from "graphviz";
 
 class INode {
-  depth: number = 0;
-  parent: Folder | null = null;
+  parent: Folder;
   constructor(public name: string) {}
 
   move(newParent: Folder) {
@@ -13,18 +12,15 @@ class INode {
     newParent.addChild(this);
     this.parent = newParent;
   }
-
-  updateDepth() {
-    this.depth = this.parent ? this.parent.depth + 1 : 0;
-  }
 }
 
 class Folder extends INode {
+  depth = 0;
   children: INode[] = [];
 
   updateDepth() {
-    super.updateDepth();
-    this.children.forEach((child) => child.updateDepth());
+    this.depth = this.parent ? this.parent.depth + 1 : 0;
+    this.subfolders.forEach((subfolder) => subfolder.updateDepth());
   }
 
   addChild(inode: INode) {
@@ -56,6 +52,12 @@ class FileNode extends INode {
   imports: FileNode[] = [];
   importedBy: FileNode[] = [];
 
+  constructor(name: string) {
+    super(name);
+    const particularFolder = new Folder("folder_" + name);
+    this.move(particularFolder);
+  }
+
   addImport(file: FileNode) {
     this.imports.push(file);
     file.importedBy.push(this);
@@ -72,13 +74,6 @@ class FileNode extends INode {
 }
 
 const root = new Folder("root");
-const folder1 = new Folder("folder1");
-const folder2 = new Folder("folder2");
-const folder8 = new Folder("folder8");
-
-root.addChild(folder1);
-root.addChild(folder2);
-root.addChild(folder8);
 
 const file1 = new FileNode("1");
 const file2 = new FileNode("2");
@@ -95,16 +90,16 @@ const file12 = new FileNode("12");
 const files = [
   file1,
   file2,
-  file3,
-  file4,
-  file5,
-  file6,
   file7,
   file8,
   file9,
   file10,
   file11,
   file12,
+  file3,
+  file4,
+  file5,
+  file6,
 ];
 
 file1.addImport(file2);
@@ -120,27 +115,11 @@ file8.addImport(file11);
 file8.addImport(file12);
 file3.addImport(file8);
 
-folder1.addChild(file1);
-folder2.addChild(file2);
-folder1.addChild(file3);
-root.addChild(file4);
-root.addChild(file5);
-root.addChild(file6);
-root.addChild(file7);
-folder8.addChild(file8);
-folder8.addChild(file9);
-folder8.addChild(file10);
-folder8.addChild(file11);
-folder8.addChild(file12);
-
 function optimizeFolderStructure() {
   files.forEach((file) => {
-    if (file.imports.length === 0 && file.importedBy.length === 1) {
-      const importer = file.importedBy[0];
-      if (importer.parent) {
-        file.move(importer.parent);
-      }
-    }
+    file.imports.forEach((importedFile) => {
+      importedFile.parent.move(file.parent!);
+    });
   });
 }
 
@@ -148,7 +127,11 @@ console.log(file4.resume());
 optimizeFolderStructure();
 console.log(file4.resume());
 
-function plotFolders(g: Graph, folder: Folder) {
+function plotFolder(
+  g: Graph,
+  folder: Folder,
+  alreadyPlotted: Set<Folder> = new Set()
+) {
   const cluster = g.addCluster("cluster_" + folder.name);
   cluster.set("label", folder.name);
 
@@ -158,15 +141,24 @@ function plotFolders(g: Graph, folder: Folder) {
     node.set("label", file.name);
   });
   folder.subfolders.forEach((subfolder) => {
-    plotFolders(cluster, subfolder);
+    if (alreadyPlotted.has(subfolder)) {
+      return;
+    }
+    plotFolder(cluster, subfolder, alreadyPlotted);
   });
 }
 
 function createGraphVisualization() {
   const g = digraph("G");
   g.set("rankdir", "RL");
+  g.setNodeAttribut("shape", "box");
+  g.set("splines", "false");
 
-  plotFolders(g, root);
+  const alreadyPlotted = new Set<Folder>();
+  files.forEach((file) => {
+    plotFolder(g, file.parent, alreadyPlotted);
+  });
+
   files.forEach((file) => {
     file.imports.forEach((importedFile) => {
       g.addEdge(file.name, importedFile.name);
