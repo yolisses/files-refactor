@@ -23,8 +23,10 @@ class FileNode {
 
 const root = new Folder("root");
 const folder1 = new Folder("folder1");
+const folder2 = new Folder("folder2");
 
 root.addFolder(folder1);
+root.addFolder(folder2);
 
 const file1 = new FileNode("1", []);
 const file2 = new FileNode("2", [file1]);
@@ -32,7 +34,7 @@ const file3 = new FileNode("3", [file1, file2]);
 const files = [file1, file2, file3];
 
 folder1.addFile(file1);
-root.addFile(file2);
+folder2.addFile(file2);
 root.addFile(file3);
 
 function plotFolders(g: Graph, folder: Folder) {
@@ -48,6 +50,8 @@ function plotFolders(g: Graph, folder: Folder) {
 
 function createGraphVisualization() {
   const g = digraph("G");
+  g.set("rankdir", "LR");
+
   plotFolders(g, root);
   files.forEach((file) => {
     file.imports.forEach((importedFile) => {
