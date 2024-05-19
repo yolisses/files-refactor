@@ -1,14 +1,14 @@
 import { Graph, digraph } from "graphviz";
 
 class INode {
-  parent: Folder | null = null;
+  parent: Folder;
   constructor(public name: string) {}
 
   move(newParent: Folder) {
-    if (this.parent) {
-      this.parent.removeFile(this);
-    }
+    console.log(`Moving ${this.name} to ${newParent.name}`);
+    this.parent.removeFile(this);
     newParent.addChild(this);
+    this.parent = newParent;
   }
 }
 
@@ -17,6 +17,7 @@ class Folder extends INode {
 
   addChild(inode: INode) {
     this.children.push(inode);
+    inode.parent = this;
   }
 
   removeFile(inode: INode) {
@@ -40,9 +41,20 @@ class Folder extends INode {
 // TODO find a better name
 class FileNode extends INode {
   imports: FileNode[] = [];
+  importedBy: FileNode[] = [];
 
   addImport(file: FileNode) {
     this.imports.push(file);
+    file.importedBy.push(this);
+  }
+
+  resume() {
+    return {
+      name: this.name,
+      parent: this.parent.name,
+      imports: this.imports.map((file) => file.name),
+      importedBy: this.importedBy.map((file) => file.name),
+    };
   }
 }
 
@@ -56,15 +68,31 @@ root.addChild(folder2);
 const file1 = new FileNode("1");
 const file2 = new FileNode("2");
 const file3 = new FileNode("3");
-const files = [file1, file2, file3];
+const file4 = new FileNode("4");
+const files = [file1, file2, file3, file4];
 
 file1.addImport(file2);
 file1.addImport(file3);
 file2.addImport(file3);
+file2.addImport(file4);
 
 folder1.addChild(file1);
 folder2.addChild(file2);
 root.addChild(file3);
+root.addChild(file4);
+
+function optimizeFolderStructure() {
+  files.forEach((file) => {
+    if (file.imports.length === 0 && file.importedBy.length === 1) {
+      const importer = file.importedBy[0];
+      file.move(importer.parent);
+    }
+  });
+}
+
+console.log(file4.resume());
+optimizeFolderStructure();
+console.log(file4.resume());
 
 function plotFolders(g: Graph, folder: Folder) {
   const cluster = g.addCluster("cluster_" + folder.name);
