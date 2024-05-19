@@ -1,4 +1,4 @@
-import { digraph } from "graphviz";
+import { Graph, digraph } from "graphviz";
 
 class INode {
   parent: Folder;
