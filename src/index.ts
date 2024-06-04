@@ -1,22 +1,17 @@
-var util = require("util"),
-  graphviz = require("graphviz");
+import { FileNode } from "./file";
+import { Folder } from "./folder";
+import { plotFolder } from "./plotFolder";
 
-// Create digraph G
-var g = graphviz.digraph("G");
+const a = new FileNode("a");
+const b = new FileNode("b");
+const c = new FileNode("c");
 
-// Add node (ID: Hello)
-var n1 = g.addNode("Hello", { color: "blue" });
-n1.set("style", "filled");
+const d = new Folder("d");
+d.files = [c];
 
-// Add node (ID: World)
-g.addNode("World");
+const e = new Folder("e");
+e.files = [b, a];
+e.folders = [d];
 
-// Add edge between the two nodes
-var e = g.addEdge(n1, "World");
-e.set("color", "red");
-
-// Print the dot script
-console.log(g.to_dot());
-
-// Generate a PNG output
-g.output("png", "test01.png");
+const graph = plotFolder(e);
+graph.output("png", "example.png");
