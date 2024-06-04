@@ -8,7 +8,7 @@ export function createRandomFileStructure() {
   const folders = [root];
   const files: FileNode[] = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const folder = new Folder(i.toString());
     const parent = getRandomElement(folders);
     parent.addFolder(folder);

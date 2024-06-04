@@ -7,6 +7,6 @@ let root = createRandomFileStructure();
 const allFiles = getAllFiles(root);
 root = lintFileStructure(allFiles);
 const g = plotFolder(root);
-
-console.log(root);
 g.output("svg", "example.svg");
+
+console.log("end");

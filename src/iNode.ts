@@ -11,4 +11,9 @@ export abstract class INode {
   getParent(): Folder {
     return this.parent;
   }
+
+  move(newParent: Folder) {
+    this.parent?.removeINode(this);
+    newParent.addINode(this);
+  }
 }
