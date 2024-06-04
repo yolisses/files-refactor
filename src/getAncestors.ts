@@ -1,8 +1,8 @@
-import { INode } from "./iNode";
+import { Folder } from "./folder";
 
-export function getAncestors(iNode: INode) {
-  const ancestors: INode[] = [iNode];
-  let parent = iNode.getParent();
+export function getAncestors(folder: Folder) {
+  const ancestors: Folder[] = [folder];
+  let parent = folder.getParent();
   while (parent) {
     ancestors.push(parent);
     parent = parent.getParent();

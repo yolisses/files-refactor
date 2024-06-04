@@ -8,5 +8,3 @@ const allFiles = getAllFiles(root);
 root = lintFileStructure(allFiles);
 const g = plotFolder(root);
 g.output("svg", "example.svg");
-
-console.log("end");

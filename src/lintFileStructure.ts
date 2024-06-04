@@ -1,5 +1,6 @@
 import { FileNode } from "./fileNode";
 import { Folder } from "./folder";
+import { getClosestCommonAncestor } from "./getClosestCommonAncestor";
 import { getLinks } from "./getLinks";
 
 export function lintFileStructure(files: FileNode[]) {
@@ -21,13 +22,15 @@ export function lintFileStructure(files: FileNode[]) {
     const { importer, imported } = link;
     const importerClone = clones.get(importer);
     const importedClone = clones.get(imported);
-    importedClone.getParent().move(importerClone.getParent());
     importerClone.addImport(importedClone);
-    console.log(
-      `Moving ${importedClone.getParent().name} to ${
-        importerClone.getParent().name
-      }`
+
+    const importedBy = importedClone.getImportedBy();
+    const commonAncestor = getClosestCommonAncestor(
+      importedBy.map((i) => i.getParent())
     );
+
+    const destination = commonAncestor as Folder;
+    importedClone.getParent().move(destination);
   });
 
   return root;

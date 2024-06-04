@@ -1,20 +1,18 @@
+import { Folder } from "./folder";
 import { getAncestors } from "./getAncestors";
-import { INode } from "./iNode";
 
-export function getClosestCommonAncestor(iNodes: INode[]) {
-  const iNodeAncestors = iNodes.map((iNode) => getAncestors(iNode));
-  const shortestAncestorLength = Math.min(
-    ...iNodeAncestors.map((ancestors) => ancestors.length)
-  );
-  let closestCommonAncestor: INode | undefined;
-  for (let i = 0; i < shortestAncestorLength; i++) {
-    if (
-      iNodeAncestors.every((ancestors) => ancestors[i] === iNodeAncestors[0][i])
-    ) {
-      closestCommonAncestor = iNodeAncestors[0][i];
+export function getClosestCommonAncestor(folder: Folder[]) {
+  const ancestors = folder.map((f) => getAncestors(f));
+
+  let commonAncestor: Folder | undefined;
+  for (let i = 0; i < ancestors[0].length; i++) {
+    const ancestor = ancestors[0][i];
+    if (ancestors.every((a) => a[i] === ancestor)) {
+      commonAncestor = ancestor;
     } else {
       break;
     }
   }
-  return closestCommonAncestor;
+
+  return commonAncestor;
 }
