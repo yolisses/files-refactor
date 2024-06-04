@@ -1,5 +1,6 @@
 import { graph } from "graphviz";
 import { Folder } from "./folder";
+import { getAllFiles } from "./getAllFiles";
 
 export function plotFolder(folder: Folder) {
   const g = graph("G");
@@ -17,6 +18,14 @@ export function plotFolder(folder: Folder) {
   }
 
   addNode(folder);
+
+  const allFiles = getAllFiles(folder);
+
+  allFiles.forEach((file) => {
+    file.imports.forEach((imp) => {
+      g.addEdge(file.name, imp.name, { dir: "forward" });
+    });
+  });
 
   return g;
 }

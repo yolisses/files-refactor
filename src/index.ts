@@ -6,6 +6,8 @@ const a = new FileNode("a");
 const b = new FileNode("b");
 const c = new FileNode("c");
 
+a.imports = [b];
+
 const d = new Folder("d");
 d.files = [c];
 
@@ -14,4 +16,4 @@ e.files = [b, a];
 e.folders = [d];
 
 const graph = plotFolder(e);
-graph.output("png", "example.png");
+graph.output("svg", "example.svg");
