@@ -7,22 +7,19 @@ export function createRandomFileStructure() {
 
   const folders = [root];
   const files: FileNode[] = [];
-  let id = 0;
 
   for (let i = 0; i < 10; i++) {
-    const folder = new Folder(id.toString());
+    const folder = new Folder(i.toString());
     const parent = getRandomElement(folders);
     parent.addFolder(folder);
     folders.push(folder);
-    id++;
   }
 
   for (let i = 0; i < 10; i++) {
     const folder = getRandomElement(folders);
-    const file = new FileNode(id.toString());
+    const file = new FileNode(i.toString());
     folder.addFile(file);
     files.push(file);
-    id++;
   }
 
   for (let i = 0; i < 10; i++) {
