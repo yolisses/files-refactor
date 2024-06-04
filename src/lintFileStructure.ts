@@ -9,7 +9,7 @@ export function lintFileStructure(files: FileNode[]) {
   const clones = new Map<FileNode, FileNode>();
 
   files.forEach((file) => {
-    const clone = new FileNode(file.name + "_clone");
+    const clone = new FileNode(file.name);
     clones.set(file, clone);
 
     const group = new Folder(file.name + "_group");
@@ -22,6 +22,7 @@ export function lintFileStructure(files: FileNode[]) {
     const { importer, imported } = link;
     const importerClone = clones.get(importer);
     const importedClone = clones.get(imported);
+
     importerClone.addImport(importedClone);
 
     const importedBy = importedClone.getImportedBy();
@@ -30,7 +31,9 @@ export function lintFileStructure(files: FileNode[]) {
     );
 
     const destination = commonAncestor as Folder;
-    importedClone.getParent().move(destination);
+    if (destination !== importedClone.getParent()) {
+      importedClone.getParent().move(destination);
+    }
   });
 
   return root;

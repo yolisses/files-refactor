@@ -6,7 +6,7 @@ export class FileNode extends INode {
 
   addImport(file: FileNode) {
     this.imports.push(file);
-    file.importedBy.push(file);
+    file.importedBy.push(this);
   }
 
   getImports() {

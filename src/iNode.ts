@@ -5,6 +5,9 @@ export abstract class INode {
   constructor(public name: string) {}
 
   bareSetParent(parent: Folder | null) {
+    if ((parent as INode) === this) {
+      throw new Error("INode cannot be its own parent");
+    }
     this.parent = parent;
   }
 
