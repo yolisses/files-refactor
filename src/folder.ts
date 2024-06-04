@@ -1,4 +1,4 @@
-import { FileNode } from "./file";
+import { FileNode } from "./fileNode";
 
 export class Folder {
   files: FileNode[] = [];

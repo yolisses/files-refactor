@@ -1,4 +1,4 @@
-import { FileNode } from "./file";
+import { FileNode } from "./fileNode";
 import { Folder } from "./folder";
 import { getRandomElement } from "./getRandomElement";
 
