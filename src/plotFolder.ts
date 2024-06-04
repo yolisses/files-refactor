@@ -1,15 +1,14 @@
-import { Graph } from "graphviz";
+import { Graph, graph } from "graphviz";
 import { Folder } from "./folder";
+import { getAllFiles } from "./getAllFiles";
 
-export function plotFolder(folder: Folder, parentCluster: Graph) {
+function plotFolderStep(folder: Folder, parentCluster: Graph) {
   const cluster = parentCluster.addCluster("cluster_" + folder.name);
   cluster.set("label", folder.name);
 
   if (folder.files.length === 0 && folder.folders.length === 0) {
     // Creates a invisible node to make the cluster visible
-    cluster.addNode("_", {
-      style: "invis",
-    });
+    cluster.addNode("_", { style: "invis" });
   }
 
   folder.files.forEach((file) => {
@@ -17,6 +16,20 @@ export function plotFolder(folder: Folder, parentCluster: Graph) {
   });
 
   folder.folders.forEach((childFolder) => {
-    plotFolder(childFolder, cluster);
+    plotFolderStep(childFolder, cluster);
   });
+}
+
+export function plotFolder(folder: Folder) {
+  const g = graph("G");
+  plotFolderStep(folder, g);
+
+  const allFiles = getAllFiles(folder);
+  allFiles.forEach((file) => {
+    file.imports.forEach((importedFile) => {
+      g.addEdge(file.name, importedFile.name, { dir: "forward" });
+    });
+  });
+
+  return g;
 }

@@ -1,4 +1,3 @@
-import { graph } from "graphviz";
 import { createRandomFileStructure } from "./createRandomFileStructure";
 import { FileNode } from "./file";
 import { Folder } from "./folder";
@@ -18,8 +17,7 @@ e.files = [b, a];
 e.folders = [d];
 
 const root = createRandomFileStructure();
-const g = graph("G");
-plotFolder(root, g);
+const g = plotFolder(root);
 
 console.log(root);
 g.output("svg", "example.svg");
