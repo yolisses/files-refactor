@@ -26,7 +26,7 @@ export function plotFolder(folder: Folder) {
 
   const allFiles = getAllFiles(folder);
   allFiles.forEach((file) => {
-    file.imports.forEach((importedFile) => {
+    file.getImports().forEach((importedFile) => {
       g.addEdge(file.name, importedFile.name);
     });
   });

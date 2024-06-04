@@ -1,12 +1,13 @@
-import { Folder } from "./folder";
+import { INode } from "./iNode";
 
-export class FileNode {
-  imports: FileNode[] = [];
-  parent: Folder | null = null;
-
-  constructor(public name: string) {}
+export class FileNode extends INode {
+  private imports: FileNode[] = [];
 
   addImport(file: FileNode) {
     this.imports.push(file);
+  }
+
+  getImports() {
+    return this.imports;
   }
 }
