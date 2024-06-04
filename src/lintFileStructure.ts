@@ -1,6 +1,6 @@
 import { FileNode } from "./fileNode";
 import { Folder } from "./folder";
-import { Link } from "./link";
+import { getLinks } from "./getLinks";
 
 export function lintFileStructure(files: FileNode[]) {
   // TODO stop creating a new root folder
@@ -16,27 +16,18 @@ export function lintFileStructure(files: FileNode[]) {
     root.addFolder(group);
   });
 
-  const links: Link[] = files
-    .map((importer) => {
-      return importer.getImports().map((imported) => {
-        return { imported, importer };
-      });
-    })
-    .flat();
-
+  const links = getLinks(files);
   links.forEach((link) => {
     const { importer, imported } = link;
-    if (imported.getImports().length === 0) {
-      const importerClone = clones.get(importer);
-      const importedClone = clones.get(imported);
-      importedClone.getParent().move(importerClone.getParent());
-      importerClone.addImport(importedClone);
-      console.log(
-        `Moving ${importedClone.getParent().name} to ${
-          importerClone.getParent().name
-        }`
-      );
-    }
+    const importerClone = clones.get(importer);
+    const importedClone = clones.get(imported);
+    importedClone.getParent().move(importerClone.getParent());
+    importerClone.addImport(importedClone);
+    console.log(
+      `Moving ${importedClone.getParent().name} to ${
+        importerClone.getParent().name
+      }`
+    );
   });
 
   return root;
