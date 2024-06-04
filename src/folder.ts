@@ -10,4 +10,12 @@ export class Folder implements INode {
   get children(): INode[] {
     return [...this.files, ...this.folders];
   }
+
+  addFile(file: FileNode) {
+    this.files.push(file);
+  }
+
+  addFolder(folder: Folder) {
+    this.folders.push(folder);
+  }
 }
