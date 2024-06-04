@@ -1,22 +1,11 @@
 import { createRandomFileStructure } from "./createRandomFileStructure";
-import { FileNode } from "./file";
-import { Folder } from "./folder";
+import { getAllFiles } from "./getAllFiles";
+import { lintFileStructure } from "./lintFileStructure";
 import { plotFolder } from "./plotFolder";
 
-const a = new FileNode("a");
-const b = new FileNode("b");
-const c = new FileNode("c");
-
-a.imports = [b];
-
-const d = new Folder("d");
-d.files = [c];
-
-const e = new Folder("e");
-e.files = [b, a];
-e.folders = [d];
-
-const root = createRandomFileStructure();
+let root = createRandomFileStructure();
+const allFiles = getAllFiles(root);
+root = lintFileStructure(allFiles);
 const g = plotFolder(root);
 
 console.log(root);

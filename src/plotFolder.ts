@@ -1,4 +1,4 @@
-import { Graph, graph } from "graphviz";
+import { Graph, digraph } from "graphviz";
 import { Folder } from "./folder";
 import { getAllFiles } from "./getAllFiles";
 
@@ -21,13 +21,13 @@ function plotFolderStep(folder: Folder, parentCluster: Graph) {
 }
 
 export function plotFolder(folder: Folder) {
-  const g = graph("G");
+  const g = digraph("G");
   plotFolderStep(folder, g);
 
   const allFiles = getAllFiles(folder);
   allFiles.forEach((file) => {
     file.imports.forEach((importedFile) => {
-      g.addEdge(file.name, importedFile.name, { dir: "forward" });
+      g.addEdge(file.name, importedFile.name);
     });
   });
 

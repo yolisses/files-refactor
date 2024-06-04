@@ -1,7 +1,8 @@
-import { INode } from "./inode";
+import { Folder } from "./folder";
 
-export class FileNode implements INode {
+export class FileNode {
   imports: FileNode[] = [];
+  parent: Folder | null = null;
 
   constructor(public name: string) {}
 

@@ -1,18 +1,14 @@
 import { FileNode } from "./file";
-import { INode } from "./inode";
 
-export class Folder implements INode {
+export class Folder {
   files: FileNode[] = [];
   folders: Folder[] = [];
 
   constructor(public name: string) {}
 
-  get children(): INode[] {
-    return [...this.files, ...this.folders];
-  }
-
   addFile(file: FileNode) {
     this.files.push(file);
+    file.parent = this;
   }
 
   addFolder(folder: Folder) {
