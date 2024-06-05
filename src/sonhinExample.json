@@ -1,0 +1,1486 @@
+{
+  "+layout.server": ["getProject", "kit"],
+  "+page": ["kit"],
+  "+page.server": ["getPresets", "patternPreset"],
+  "+server": ["addStream", "stream", "getUserId.js", "kit"],
+  "addChord": ["removeItem", "chordData", "command", "editor"],
+  "addClip": ["removeItem", "command", "clipData", "editor"],
+  "addClip.test": [
+    "clipData",
+    "sectionData",
+    "getBlankEditor",
+    "vitest",
+    "addClip"
+  ],
+  "addCommand": ["commandData", "projectModel"],
+  "addEffect": [
+    "removeItem",
+    "command",
+    "effectData",
+    "editor",
+    "getEffectsParentData"
+  ],
+  "addEffect.test": [
+    "effectData",
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "addEffect"
+  ],
+  "addInstrument": [
+    "instrumentData",
+    "command",
+    "editor",
+    "insertItemOnRecord",
+    "insertItemsOnRecord",
+    "removeItemOnRecord",
+    "removeItemsOnRecord"
+  ],
+  "addInstrument.test": [
+    "instrumentData",
+    "getBlankEditor",
+    "vitest",
+    "addInstrument"
+  ],
+  "addLike": ["newId", "presetModel", "likeFitnessValue", "likeModel"],
+  "addPattern": [
+    "patternData",
+    "command",
+    "editor",
+    "insertItemsOnRecord",
+    "removeItemOnRecord",
+    "removeItemsOnRecord"
+  ],
+  "addPattern.test": ["patternData", "getBlankEditor", "vitest", "addPattern"],
+  "addSection": [
+    "removeItem",
+    "command",
+    "sectionData",
+    "editor",
+    "insertItemOnRecord",
+    "removeItemOnRecord"
+  ],
+  "addSection.test": ["sectionData", "getBlankEditor", "vitest", "addSection"],
+  "addSound": [
+    "removeItem",
+    "command",
+    "soundData",
+    "editor",
+    "insertItemsOnRecord",
+    "removeItemsOnRecord"
+  ],
+  "addSound.test": [
+    "instrumentData",
+    "soundData",
+    "getBlankEditor",
+    "vitest",
+    "addSound"
+  ],
+  "addStream": ["stream", "streamModel"],
+  "addSwing.test": ["vitest", "addSwing"],
+  "amplitudeEnvelope": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "amplitudeOscillation": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage"
+  ],
+  "anticipateNotes": ["newControl", "notesEffect"],
+  "anticipateNotes.test": ["vitest"],
+  "arpeggio": [
+    "newId",
+    "note",
+    "newControl",
+    "times",
+    "notesEffect",
+    "replaceArray"
+  ],
+  "arpeggio.test": [
+    "note",
+    "chord",
+    "progression",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "arpeggio"
+  ],
+  "arrayEqualValues.test": ["vitest", "arrayEqualValues"],
+  "audioContextStore": ["store"],
+  "byClientCreatedAt": ["commandData"],
+  "byIndex": ["$wondrous"],
+  "channelOctaves": ["channels"],
+  "chord": ["chordData"],
+  "chordIdStore": ["store"],
+  "chords": ["newId", "note", "notesEffect", "replaceArray"],
+  "chords.test": [
+    "note",
+    "chord",
+    "progression",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "chords"
+  ],
+  "chromaticMiddleC": ["chromaticOctave", "chromaticPitches"],
+  "chromaticToDiatonic": [
+    "chromaticOctave",
+    "diatonicOctave",
+    "diatonicPitches",
+    "positiveModulo"
+  ],
+  "chromaticToDiatonic.test": [
+    "vitest",
+    "chromaticOctave",
+    "chromaticPitches",
+    "chromaticToDiatonic",
+    "diatonicOctave"
+  ],
+  "clamp.test": ["vitest", "clamp"],
+  "clip": ["newId", "clipData", "note", "pattern", "section"],
+  "clipModeStore": ["store", "clipMode"],
+  "colorsByChannelHash": ["hashToU32", "channelColors"],
+  "command": ["newId", "commandData", "editor"],
+  "commandClasses": [
+    "addClip",
+    "removeClip",
+    "executeCommands",
+    "redo",
+    "undo",
+    "addEffect",
+    "moveEffect",
+    "removeEffect",
+    "updateEffect",
+    "addInstrument",
+    "removeInstrument",
+    "renameInstrument",
+    "setChannelOfInstrument",
+    "setInstrumentVolume",
+    "setMasterVolume",
+    "addPattern",
+    "removePattern",
+    "renamePattern",
+    "setChannelOfPattern",
+    "setPatternIsMuted",
+    "setPatternIsSoloed",
+    "addChord",
+    "removeChord",
+    "replaceChordIntervals",
+    "addSection",
+    "removeSection",
+    "addSound",
+    "removeSound"
+  ],
+  "commandSchema": ["commandData", "mongoose", "required"],
+  "commonGraphEffectClasses": [
+    "overdrive",
+    "reduceResolution",
+    "reduceSampleRate",
+    "saturation",
+    "amplitudeOscillation",
+    "compress",
+    "limiter",
+    "volume",
+    "cutInfrasound",
+    "highPass",
+    "lowPass",
+    "peaking"
+  ],
+  "compress": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "connectToDatabase": ["dotenv", "mongoose"],
+  "control": ["hashToU32", "$wondrous", "effect", "controlData"],
+  "controlsData": ["controlData"],
+  "copyFirstHalf": ["newId", "patternDuration", "notesEffect"],
+  "copyFirstHalf.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "copyFirstHalf"
+  ],
+  "createChordData": ["newId", "chordData", "chordGenotype"],
+  "createClipData": ["newId", "clipData", "clipGenotype"],
+  "createCommand": ["command", "commandClasses", "commandData"],
+  "createCommand.test": [
+    "sectionData",
+    "vitest",
+    "createCommand",
+    "addSection"
+  ],
+  "createEffect": ["effectData", "effect", "effectClasses"],
+  "createEffect.test": ["vitest", "effectsParent", "overdrive", "createEffect"],
+  "createEffectData": ["effectGenotype", "newId", "effectData"],
+  "createEffects": ["effectsParentData", "createEffect"],
+  "createEnsembleData": [
+    "newId",
+    "ensembleData",
+    "ensembleGenotype",
+    "createPatternData",
+    "createProgressionData",
+    "createSectionData"
+  ],
+  "createEvaluator": ["tfjs", "evaluator"],
+  "createEvaluator.test": ["vitest", "createEvaluator"],
+  "createEvaluatorTrainer": ["tfjs", "evaluator", "getEmbeddingSize"],
+  "createEvaluatorTrainer.test": [
+    "vitest",
+    "createEvaluator",
+    "createEvaluatorTrainer"
+  ],
+  "createGuestUser": ["newId", "user", "userModel"],
+  "createInstrumentData": [
+    "newId",
+    "instrumentData",
+    "instrumentGenotype",
+    "createEffectData",
+    "createSoundData"
+  ],
+  "createInstrumentPreview": [
+    "createInstrumentData",
+    "createPatternData",
+    "addClip",
+    "addInstrument",
+    "addPattern",
+    "addSection",
+    "newId",
+    "getTrackData",
+    "patternDuration",
+    "track",
+    "preview",
+    "previewProgressionData",
+    "instrumentPreset",
+    "getBlankEditor",
+    "getBlankSectionData",
+    "loop",
+    "getPreviewPatternPreset"
+  ],
+  "createJwt": ["private", "jsonwebtoken"],
+  "createMasterData": [
+    "newId",
+    "masterData",
+    "masterGenotype",
+    "createEffectData"
+  ],
+  "createNodeViews": ["$wondrous", "nodeView"],
+  "createPatternData": [
+    "newId",
+    "patternData",
+    "patternGenotype",
+    "createEffectData"
+  ],
+  "createPatternPreview": [
+    "createInstrumentData",
+    "createPatternData",
+    "addClip",
+    "addInstrument",
+    "addPattern",
+    "addSection",
+    "newId",
+    "getTrackData",
+    "patternDuration",
+    "track",
+    "preview",
+    "previewProgressionData",
+    "patternPreset",
+    "getBlankEditor",
+    "getBlankSectionData",
+    "loop",
+    "getPreviewInstrumentPreset"
+  ],
+  "createProgressionData": ["progressionGenotype", "createChordData"],
+  "createProject": [
+    "newId",
+    "trackData",
+    "generateName",
+    "project",
+    "projectModel"
+  ],
+  "createProjectsMatchIterator": [
+    "project",
+    "times",
+    "tfjs",
+    "padArraysToSameSize",
+    "getEmbeddings",
+    "getTrackTokens",
+    "trackVocabulary",
+    "createTimelinesMatch",
+    "getProjectTimeline"
+  ],
+  "createProjectsMatchIterator.test": [
+    "project",
+    "addSection",
+    "getBlankTrackData",
+    "tfjs",
+    "vitest",
+    "createProjectsMatchIterator"
+  ],
+  "createRandomMatch": ["match", "timeline"],
+  "createRandomMatch.test": ["vitest", "createRandomMatch", "timeline"],
+  "createSectionData": [
+    "newId",
+    "sectionData",
+    "sectionGenotype",
+    "createClipData",
+    "createEffectData"
+  ],
+  "createSoundData": [
+    "newId",
+    "soundData",
+    "soundGenotype",
+    "createEffectData"
+  ],
+  "createTimelinesMatch": [
+    "createRandomMatch",
+    "match",
+    "timeline",
+    "weightedRandom"
+  ],
+  "createTrackData": [
+    "trackData",
+    "trackGenotype",
+    "createEnsembleData",
+    "createInstrumentData",
+    "createMasterData"
+  ],
+  "createTrackPreview": [
+    "createTrackData",
+    "track",
+    "preview",
+    "trackPreset",
+    "loop"
+  ],
+  "createWondrousProxy": ["$wondrous"],
+  "createWondrousProxy.test": ["vitest", "createWondrousProxy"],
+  "createWondrousWorkletNode": ["wasmBytesSingleton"],
+  "crescendo": ["newControl", "notesEffect", "linearInterpolate"],
+  "crescendo.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "crescendo"
+  ],
+  "crossoverInstrumentPresets": ["crossoverLists", "instrumentGenotype"],
+  "crossoverLists.test": ["mockMathRandom", "vitest", "crossoverLists"],
+  "crossoverPatternGenotypes": ["crossoverLists", "patternGenotype"],
+  "crossoverPatternGenotypes.test": [
+    "mockMathRandom",
+    "vitest",
+    "patternGenotype",
+    "crossoverPatternGenotypes"
+  ],
+  "crossoverTrackGenotypes": ["crossoverLists", "trackGenotype"],
+  "crossoverTrackGenotypes.test": [
+    "mockMathRandom",
+    "vitest",
+    "trackGenotype",
+    "crossoverTrackGenotypes"
+  ],
+  "cutInfrasound": ["graphEffect", "graphStage", "$wondrous", "constantTicket"],
+  "cyclicPerlinNoise": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "$wondrous",
+    "toneGraphStage"
+  ],
+  "deleteProject": ["kit", "projectModel"],
+  "devProgression": ["chord", "progression"],
+  "diatonicToChromatic": [
+    "chromaticOctave",
+    "chromaticPitches",
+    "diatonicOctave",
+    "positiveModulo"
+  ],
+  "diatonicToChromatic.test": [
+    "vitest",
+    "chromaticOctave",
+    "chromaticPitches",
+    "diatonicOctave",
+    "diatonicPitches",
+    "diatonicToChromatic"
+  ],
+  "division": [
+    "newId",
+    "note",
+    "patternDuration",
+    "newControl",
+    "times",
+    "notesEffect"
+  ],
+  "division.test": ["note", "vitest", "fromDetails", "notesEffect", "division"],
+  "dynamic": ["newControl", "notesEffect"],
+  "dynamic.test": ["note", "vitest", "fromDetails", "notesEffect", "dynamic"],
+  "editor": [
+    "clipData",
+    "effectData",
+    "ensembleData",
+    "instrumentData",
+    "masterData",
+    "patternData",
+    "sectionData",
+    "soundData",
+    "trackData",
+    "command",
+    "commandData",
+    "redo",
+    "undo",
+    "getItemsRecord"
+  ],
+  "editorStore": [
+    "createCommand",
+    "editor",
+    "same",
+    "store",
+    "projectStore",
+    "byClientCreatedAt"
+  ],
+  "effect": ["effectData", "controlData", "effectsParent"],
+  "effectClasses": [
+    "graphEffectClasses",
+    "notesEffectClasses",
+    "effectConstructor"
+  ],
+  "effectConstructor": ["effectData", "controlData", "effect"],
+  "effectDetails": ["controlsData"],
+  "effectTerms": ["effectClasses", "getUniqueStrings"],
+  "effectsParent": ["effect"],
+  "effectsParentData": ["effectData"],
+  "encodeIndexes.test": ["tfjs", "vitest", "toTensorEqual", "encodeIndexes"],
+  "encodeMp3": ["lamejs", "getIntSamples"],
+  "enhanceEffect": [
+    "editor",
+    "getTrackData",
+    "effectData",
+    "trackData",
+    "getEffectActions",
+    "evaluator",
+    "getMaxScoreIndex",
+    "getScores"
+  ],
+  "enhanceSound": [
+    "editor",
+    "getTrackData",
+    "soundData",
+    "trackData",
+    "getEffectActions",
+    "getSoundActions",
+    "evaluator",
+    "getMaxScoreIndex",
+    "getScores"
+  ],
+  "ensemble": [
+    "ensembleData",
+    "note",
+    "scale",
+    "chord",
+    "clip",
+    "pattern",
+    "progression",
+    "section"
+  ],
+  "ensembleData": ["patternData", "progressionData", "sectionData"],
+  "ensembleGenotype": [
+    "patternGenotype",
+    "progressionGenotype",
+    "sectionGenotype"
+  ],
+  "ensembleStore": ["store", "trackStore"],
+  "ensureNoPrimerNodes": ["$wondrous"],
+  "ensureNoPrimerNodes.test": ["$wondrous", "vitest", "ensureNoPrimerNodes"],
+  "evaluator": ["tfjs"],
+  "evaluatorStore": ["evaluator", "store"],
+  "executeCommands": ["command", "commandData", "editor"],
+  "filterSlide": ["newControl", "getControlNodes", "graphEffect", "graphStage"],
+  "findItemById": ["item"],
+  "findItemById.test": ["vitest", "findItemById"],
+  "focus": ["pattern", "section"],
+  "formatTime.test": ["vitest", "formatTime"],
+  "frequencyOscillation": [
+    "newControl",
+    "$wondrous",
+    "getControlNodes",
+    "graphEffect",
+    "toneGraphStage"
+  ],
+  "fromDetails": ["effectConstructor", "effectDetails"],
+  "generateInstrumentPresets": [
+    "newId",
+    "instrumentPreset",
+    "crossoverInstrumentPresets",
+    "mutateInstrumentPreset",
+    "selectInstrumentPresets"
+  ],
+  "generateName": ["namingOptions"],
+  "generatePatternPresets": [
+    "newId",
+    "patternPreset",
+    "crossoverPatternGenotypes",
+    "mutatePatternGenotype",
+    "selectPatternPresets"
+  ],
+  "generateTrackPresets": [
+    "newId",
+    "trackPreset",
+    "crossoverTrackGenotypes",
+    "mutateTrackGenotype",
+    "selectTrackPresets"
+  ],
+  "getAllProjects": ["project", "projectModel"],
+  "getBlankEditor": ["editor", "getBlankTrackData"],
+  "getBlankEnsembleData": ["ensembleData"],
+  "getBlankInstrumentData": ["instrumentData"],
+  "getBlankInstrumentPreset": ["instrumentPreset", "getBlankDate"],
+  "getBlankMasterData": ["masterData"],
+  "getBlankPatternData": ["patternData"],
+  "getBlankPatternPreset": ["patternPreset", "getBlankDate"],
+  "getBlankProject": ["project", "getBlankTrackData"],
+  "getBlankSectionData": ["sectionData"],
+  "getBlankTrackData": [
+    "trackData",
+    "getBlankEnsembleData",
+    "getBlankMasterData"
+  ],
+  "getBlankTrackPreset": ["trackPreset"],
+  "getChordGenotype": ["chord", "chordGenotype"],
+  "getChordName": ["chord", "romanNumbers"],
+  "getClipGenotype": ["clip", "clipGenotype"],
+  "getColorStyle": ["channelColors"],
+  "getControlAction": ["command", "updateEffect", "effectData", "controlData"],
+  "getControlNodes": ["$wondrous", "getTicket", "effect"],
+  "getDenormalizedControlValue": ["controlData", "withTension"],
+  "getDenormalizedControlValue.test": [
+    "controlData",
+    "vitest",
+    "getDenormalizedControlValue"
+  ],
+  "getEffectActions": [
+    "command",
+    "effectData",
+    "effectClasses",
+    "isDefined",
+    "getControlAction"
+  ],
+  "getEffectDataFromDefaults": ["newId", "effectData", "effectClasses"],
+  "getEffectDataFromDefaults.test": [
+    "vitest",
+    "effectData",
+    "getEffectDataFromDefaults"
+  ],
+  "getEffectGenotype": ["effect", "effectGenotype"],
+  "getEffectIds": ["editor"],
+  "getEffectsParentData": ["effectsParentData", "editor"],
+  "getEffectsParentData.test": [
+    "instrumentData",
+    "masterData",
+    "patternData",
+    "sectionData",
+    "soundData",
+    "getBlankEditor",
+    "vitest",
+    "getEffectsParentData"
+  ],
+  "getEmbeddingSize": ["tfjs", "evaluator"],
+  "getEmbeddings": [
+    "tfjs",
+    "token",
+    "getIsNumberEmbeddings",
+    "getNumberEmbeddings",
+    "getStringEmbeddings",
+    "vocabulary"
+  ],
+  "getEmbeddings.test": [
+    "vitest",
+    "toTensorEqual",
+    "getEmbeddings",
+    "vocabulary"
+  ],
+  "getEnsembleGenotype": [
+    "ensemble",
+    "ensembleGenotype",
+    "getPatternGenotype",
+    "getProgressionGenotype",
+    "getSectionGenotype"
+  ],
+  "getFrame": ["sampleRate"],
+  "getGoogleUserData": ["public", "google-auth-library"],
+  "getInstrumentGenotype": [
+    "instrument",
+    "instrumentGenotype",
+    "getEffectGenotype",
+    "getSoundGenotype"
+  ],
+  "getIsNumberEmbeddings": ["tfjs", "token"],
+  "getIsNumberEmbeddings.test": [
+    "vitest",
+    "toTensorEqual",
+    "token",
+    "getIsNumberEmbeddings"
+  ],
+  "getItemsById.test": ["vitest", "getItemsRecord", "item"],
+  "getItemsRecord": ["insertItemsOnRecord", "item"],
+  "getLikedIds": ["likeModel"],
+  "getMasterGenotype": ["master", "masterGenotype", "getEffectGenotype"],
+  "getMatchContainer": [
+    "tfjs",
+    "getTrackEmbeddings",
+    "match",
+    "matchContainer"
+  ],
+  "getMaxScoreIndex": ["tfjs"],
+  "getMaxScoreIndex.test": ["tfjs", "vitest", "getMaxScoreIndex"],
+  "getNodeData": ["$wondrous", "isControlNode", "nodeData"],
+  "getNormalizedControlValue": ["controlData", "withoutTension"],
+  "getNormalizedControlValue.test": [
+    "controlData",
+    "vitest",
+    "getNormalizedControlValue"
+  ],
+  "getNoteChord": ["note", "chord", "progression", "getOverlap"],
+  "getNoteChord.test": ["note", "chord", "vitest", "getNoteChord"],
+  "getNoteDto": ["note", "hashToU32"],
+  "getNumberEmbeddings": ["tfjs", "token"],
+  "getNumberEmbeddings.test": [
+    "vitest",
+    "toTensorEqual",
+    "token",
+    "getNumberEmbeddings"
+  ],
+  "getObjectTokens": ["token"],
+  "getObjectTokens.test": ["vitest", "getObjectTokens"],
+  "getOverlap.test": ["vitest", "getOverlap"],
+  "getPatternGenotype": ["pattern", "patternGenotype", "getEffectGenotype"],
+  "getPresetById": ["preset", "presetModel"],
+  "getPresets": ["preset", "presetModel"],
+  "getPreviewInstrumentPreset": ["instrumentPresetSeeders"],
+  "getPreviewPatternPreset": ["patternPreset", "patternPresetSeeders"],
+  "getProgressionGenotype": [
+    "progression",
+    "progressionGenotype",
+    "getChordGenotype"
+  ],
+  "getProject": ["project", "projectModel"],
+  "getProjectTimeline": [
+    "project",
+    "createCommand",
+    "editor",
+    "getTrackData",
+    "timeline"
+  ],
+  "getProjectTimeline.test": [
+    "addSection",
+    "sectionData",
+    "getBlankProject",
+    "vitest",
+    "getProjectTimeline",
+    "timeline"
+  ],
+  "getScores": [
+    "trackData",
+    "tfjs",
+    "padArraysToSameSize",
+    "getEmbeddings",
+    "evaluator",
+    "getEmbeddingSize",
+    "getTrackTokens",
+    "trackVocabulary"
+  ],
+  "getSectionGenotype": [
+    "section",
+    "sectionGenotype",
+    "getClipGenotype",
+    "getEffectGenotype"
+  ],
+  "getSelectedIndex.test": [
+    "mockMathRandom",
+    "times",
+    "vitest",
+    "getSelectedIndex"
+  ],
+  "getSoundActions": ["command", "removeEffect", "soundData"],
+  "getSoundGenotype": ["sound", "soundGenotype", "getEffectGenotype"],
+  "getSoundKind": ["sound", "soundEffectClasses"],
+  "getStackedNotes": ["note", "byStart"],
+  "getStackedNotes.test": ["note", "vitest", "getStackedNotes"],
+  "getStringEmbeddings": ["tfjs", "token", "encodeIndexes", "vocabulary"],
+  "getStringEmbeddings.test": [
+    "vitest",
+    "toTensorEqual",
+    "token",
+    "getStringEmbeddings",
+    "vocabulary"
+  ],
+  "getTicket": ["hashToU32"],
+  "getTrackData": ["editor", "trackData"],
+  "getTrackEmbeddings": [
+    "trackData",
+    "getEmbeddings",
+    "getTrackTokens",
+    "trackVocabulary"
+  ],
+  "getTrackGenotype": [
+    "track",
+    "trackGenotype",
+    "getEnsembleGenotype",
+    "getInstrumentGenotype",
+    "getMasterGenotype"
+  ],
+  "getTrackTokens": [
+    "getTrackGenotype",
+    "track",
+    "trackData",
+    "getObjectTokens",
+    "token"
+  ],
+  "getTreeNodes": ["$wondrous"],
+  "getTreeNodes.test": ["$wondrous", "vitest", "getTreeNodes"],
+  "getUniqueStrings.test": ["vitest", "getUniqueStrings"],
+  "getUserByToken": ["private", "user", "kit", "jsonwebtoken", "userModel"],
+  "getUserId": ["private", "kit", "jsonwebtoken"],
+  "getUserProjects": ["project", "projectModel"],
+  "glide": [
+    "newControl",
+    "$wondrous",
+    "getControlNodes",
+    "graphEffect",
+    "toneGraphStage"
+  ],
+  "graph": [
+    "$wondrous",
+    "ensureNoPrimerNodes",
+    "getNodeData",
+    "getTreeNodes",
+    "graphData",
+    "optimizeNodeTree"
+  ],
+  "graphData": ["nodeData"],
+  "graphEffect": ["graphStage", "effect"],
+  "graphEffectClasses": [
+    "commonGraphEffectClasses",
+    "masterGraphEffectClasses",
+    "synthGraphEffectClasses",
+    "soundEffectClasses",
+    "toneGraphEffectClasses"
+  ],
+  "graphStage": ["$wondrous"],
+  "graphView": [
+    "graph",
+    "createNodeViews",
+    "hideRedundancies",
+    "nodeView",
+    "setNewPosition"
+  ],
+  "hashToU32.test": ["vitest", "hashToU32"],
+  "hideRedundancies": ["capitalize", "graphView", "nodeView"],
+  "highPass": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "hooks.server": ["private", "seedPresets", "mongoose"],
+  "indexNodeTree": ["$wondrous", "resetNodeTreeIndexes"],
+  "indexNodeTree.test": ["$wondrous", "vitest", "indexNodeTree"],
+  "insertItemOnRecord": ["item"],
+  "insertItemOnRecord.test": ["vitest", "insertItemOnRecord"],
+  "insertItemsOnRecord": ["item"],
+  "insertItemsOnRecord.test": ["vitest", "insertItemsOnRecord"],
+  "instrument": ["instrumentData", "effect", "createEffects", "sound", "synth"],
+  "instrumentData": ["effectData", "soundData"],
+  "instrumentGenotype": ["effectGenotype", "soundGenotype"],
+  "instrumentPreset": ["instrumentGenotype", "preset"],
+  "instrumentPresetSeeders": ["instrumentPreset", "getBlankDate"],
+  "instrumentStore": ["store", "trackStore"],
+  "instrumentsHref": [
+    "store",
+    "mediaStore",
+    "projectIdStore",
+    "instrumentStore"
+  ],
+  "isControlNode": ["$wondrous"],
+  "isDefined.test": ["vitest", "isDefined"],
+  "isLikedRecordStore": ["store"],
+  "isNodeEquivalent": ["$wondrous", "isControlNode"],
+  "isNodeEquivalent.test": ["$wondrous", "vitest", "isNodeEquivalent"],
+  "isPlayingStore": ["store"],
+  "isSynthOutputNode": ["$wondrous"],
+  "joinByPitch": ["note", "notesEffect", "byStart", "setArrayContent"],
+  "joinByPitch.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "joinByPitch"
+  ],
+  "levelsStore": ["maxSynths", "store"],
+  "likeModel": ["mongoose", "likeSchema"],
+  "likeSchema": ["mongoose", "required", "like"],
+  "limiter": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "linearInterpolate.test": ["vitest", "linearInterpolate"],
+  "loFiNaming": ["naming"],
+  "loadEvaluator": ["evaluator", "tfjs"],
+  "loopStore": ["loop", "store"],
+  "lowPass": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "master": [
+    "getTreeNodes",
+    "graph",
+    "replaceNodeUsage",
+    "createEffects",
+    "instrument",
+    "sumNodes",
+    "masterData",
+    "effect",
+    "masterGraphStage",
+    "$wondrous",
+    "hashToU32",
+    "side"
+  ],
+  "masterData": ["effectData"],
+  "masterGenotype": ["effectGenotype"],
+  "masterGraphEffectClasses": ["sideChain"],
+  "masterGraphStage": ["$wondrous", "graphStage"],
+  "masterIndex": ["maxSynths"],
+  "match": ["trackData"],
+  "matchContainer": ["tfjs"],
+  "mediaStore": ["svelte-media-queries"],
+  "mixer": [
+    "instrument",
+    "note",
+    "$wondrous",
+    "getNoteDto",
+    "hashToU32",
+    "master"
+  ],
+  "mixerStore": ["mixer", "store", "wondrousStore"],
+  "mockAddEffect": ["editor", "effectData", "command"],
+  "mockMathRandom": ["prando", "vitest"],
+  "mockMathRandom.test": ["vitest", "mockMathRandom", "mockMathRandomTester"],
+  "mockMathRandomTester": ["times"],
+  "mockNewId": ["prando", "vitest"],
+  "mockNewId.test": ["vitest", "mockNewId", "mockNewIdTester"],
+  "mockNewIdTester": ["newId", "times"],
+  "move.test": ["vitest", "move"],
+  "moveEffect": ["command", "editor", "move", "getEffectsParentData"],
+  "moveEffect.test": [
+    "effectData",
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "moveEffect"
+  ],
+  "mutateEffectData": [
+    "effectData",
+    "effectClasses",
+    "clamp",
+    "getDenormalizedControlValue",
+    "getNormalizedControlValue"
+  ],
+  "mutateEffectGenotype": [
+    "effectClasses",
+    "clamp",
+    "effectGenotype",
+    "getDenormalizedControlValue",
+    "getNormalizedControlValue"
+  ],
+  "mutateInstrumentPreset": [
+    "mutateEffectGenotype",
+    "instrumentGenotype",
+    "mutateSoundGenotype"
+  ],
+  "mutatePatternGenotype": ["mutateEffectGenotype", "patternGenotype"],
+  "mutateSoundGenotype": ["mutateEffectGenotype", "soundGenotype"],
+  "mutateTrackGenotype": ["trackGenotype", "mutateInstrumentPreset"],
+  "namingOptions": ["loFiNaming", "phonkNaming"],
+  "newControl": ["controlData"],
+  "newId": ["nanoid"],
+  "nodeView": ["isControlNode", "$wondrous", "asTitle", "position"],
+  "notesEffect": ["note", "progression", "effect"],
+  "notesEffectClasses": [
+    "effectConstructor",
+    "arpeggio",
+    "chords",
+    "copyFirstHalf",
+    "division",
+    "joinByPitch",
+    "octave",
+    "randomPitch",
+    "rootNotes",
+    "roundPitch",
+    "anticipateNotes",
+    "setDuration",
+    "shiftOneBar",
+    "staccato",
+    "strum",
+    "swing",
+    "tempo",
+    "crescendo",
+    "dynamic",
+    "randomVelocity"
+  ],
+  "notesStore": ["note", "store"],
+  "notesZoomStore": ["store"],
+  "octave": ["newControl", "diatonicOctave", "notesEffect"],
+  "octave.test": ["note", "vitest", "fromDetails", "notesEffect", "octave"],
+  "optimizeNodeTree": [
+    "$wondrous",
+    "byIndex",
+    "getTreeNodes",
+    "indexNodeTree",
+    "isNodeEquivalent",
+    "replaceNodeUsage"
+  ],
+  "optimizeNodeTree.test": ["$wondrous", "vitest", "optimizeNodeTree"],
+  "overdrive": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "padArraysToSameSize": ["fillArray"],
+  "padArraysToSameSize.test": ["vitest", "padArraysToSameSize"],
+  "pattern": [
+    "patternData",
+    "effect",
+    "createEffects",
+    "note",
+    "scale",
+    "progression"
+  ],
+  "patternData": ["effectData"],
+  "patternGenotype": ["effectGenotype"],
+  "patternPreset": ["patternGenotype", "preset"],
+  "patternPresetSeeders": ["patternPreset", "getBlankDate"],
+  "patternStore": ["store", "ensembleStore"],
+  "patternsHref": ["store", "mediaStore", "projectIdStore", "patternStore"],
+  "peaking": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "perlinNoise": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "$wondrous",
+    "toneGraphStage"
+  ],
+  "phonkNaming": ["naming"],
+  "piano": [
+    "newId",
+    "note",
+    "timeSource",
+    "chromaticOctave",
+    "isTargetInput",
+    "channelOctaves",
+    "pianoKeys"
+  ],
+  "pianoStore": [
+    "audioContextStore",
+    "mixerStore",
+    "timeSource",
+    "store",
+    "piano"
+  ],
+  "pitchSlide": [
+    "newControl",
+    "graphEffect",
+    "$wondrous",
+    "getControlNodes",
+    "toneGraphStage"
+  ],
+  "playTrack": [
+    "track",
+    "createWondrousProxy",
+    "createWondrousWorkletNode",
+    "loop",
+    "mixer",
+    "sequencer"
+  ],
+  "poppingNoise": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "$wondrous",
+    "toneGraphStage"
+  ],
+  "positiveModulo.test": ["vitest", "positiveModulo"],
+  "preset": ["origin"],
+  "presetModel": ["mongoose", "presetSchema"],
+  "presetSchema": ["preset", "mongoose", "required"],
+  "preview": ["track", "loop", "playTrack"],
+  "previewProgressionData": ["progressionData"],
+  "progression": ["chord"],
+  "progressionData": ["chordData"],
+  "progressionGenotype": ["chordGenotype"],
+  "progressionTime": ["store"],
+  "progressionZoom": ["store"],
+  "project": ["commandData", "trackData"],
+  "projectIdStore": ["store"],
+  "projectModel": ["mongoose", "projectSchema"],
+  "projectSchema": ["mongoose", "commandSchema", "required", "project"],
+  "projectStore": ["project", "store"],
+  "pulse": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "$wondrous",
+    "toneGraphStage"
+  ],
+  "random": ["prando"],
+  "randomPitch": ["newControl", "random", "notesEffect"],
+  "randomPitch.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "randomPitch"
+  ],
+  "randomVelocity": ["newControl", "random", "notesEffect"],
+  "randomVelocity.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "randomVelocity"
+  ],
+  "redo": ["command", "editor"],
+  "redo.test": ["getBlankEditor", "vitest", "command", "redo"],
+  "reduceResolution": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "reduceSampleRate": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "reinsert": ["remotion"],
+  "reinsert.test": ["vitest", "reinsert"],
+  "removeByValue": ["remotion"],
+  "removeByValue.test": ["vitest", "removeByValue"],
+  "removeChord": [
+    "reinsert",
+    "remotion",
+    "removeItemById",
+    "chordData",
+    "command",
+    "editor"
+  ],
+  "removeClip": [
+    "reinsert",
+    "remotion",
+    "removeItem",
+    "command",
+    "clipData",
+    "editor"
+  ],
+  "removeClip.test": [
+    "clipData",
+    "sectionData",
+    "getBlankEditor",
+    "vitest",
+    "removeClip"
+  ],
+  "removeEffect": [
+    "reinsert",
+    "remotion",
+    "removeItemById",
+    "command",
+    "effectData",
+    "editor",
+    "getEffectsParentData"
+  ],
+  "removeEffect.test": [
+    "effectData",
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "removeEffect"
+  ],
+  "removeInstrument": ["command", "instrumentData", "editor"],
+  "removeInstrument.test": [
+    "instrumentData",
+    "getBlankEditor",
+    "vitest",
+    "removeInstrument"
+  ],
+  "removeItem": ["item", "remotion"],
+  "removeItem.test": ["vitest", "removeItem"],
+  "removeItemById": ["item", "remotion"],
+  "removeItemById.test": ["vitest", "removeItemById"],
+  "removeItemOnRecord": ["item"],
+  "removeItemOnRecord.test": ["vitest", "removeItemOnRecord"],
+  "removeItemsOnRecord": ["item"],
+  "removeItemsOnRecord.test": ["vitest", "removeItemsOnRecord"],
+  "removeLike": ["presetModel", "likeFitnessValue", "likeModel"],
+  "removePattern": ["command", "patternData", "editor"],
+  "removePattern.test": [
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "removePattern"
+  ],
+  "removeSection": [
+    "reinsert",
+    "remotion",
+    "removeItem",
+    "sectionData",
+    "command",
+    "editor"
+  ],
+  "removeSection.test": [
+    "sectionData",
+    "getBlankEditor",
+    "vitest",
+    "addSection"
+  ],
+  "removeSound": [
+    "reinsert",
+    "remotion",
+    "removeItemById",
+    "command",
+    "soundData",
+    "editor"
+  ],
+  "removeSound.test": [
+    "instrumentData",
+    "soundData",
+    "getBlankEditor",
+    "vitest",
+    "removeSound"
+  ],
+  "removeUndefinedValues.test": ["vitest", "removeUndefinedValues"],
+  "renameInstrument": ["command", "editor"],
+  "renameInstrument.test": [
+    "instrumentData",
+    "getBlankEditor",
+    "vitest",
+    "renameInstrument"
+  ],
+  "renamePattern": ["command", "editor"],
+  "renamePattern.test": [
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "renamePattern"
+  ],
+  "renameProject": ["projectModel"],
+  "renderTrack": [
+    "track",
+    "createWondrousProxy",
+    "createWondrousWorkletNode",
+    "mixer",
+    "sampleRate",
+    "sequencer",
+    "ensurePostMessages"
+  ],
+  "replaceChordIntervals": ["findItemById", "command", "editor"],
+  "replaceNodeUsage": ["$wondrous"],
+  "replaceNodeUsage.test": ["$wondrous", "vitest", "replaceNodeUsage"],
+  "resetNodeTreeIndexes": ["$wondrous"],
+  "reverb": [
+    "newControl",
+    "graphEffect",
+    "graphStage",
+    "$wondrous",
+    "getControlNodes"
+  ],
+  "ringBuffer.test": ["vitest", "ringBuffer"],
+  "rootNotes": ["newId", "note", "replaceArray", "notesEffect"],
+  "rootNotes.test": [
+    "note",
+    "chord",
+    "progression",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "rootNotes"
+  ],
+  "roundPitch": ["notesEffect"],
+  "roundPitch.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "roundPitch"
+  ],
+  "saturation": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "savePreset": ["preset", "presetModel"],
+  "sawtooth": ["graphEffect", "$wondrous", "toneGraphStage"],
+  "scale": ["diatonicToChromatic", "note"],
+  "scale.test": ["vitest", "note", "scale"],
+  "section": [
+    "sectionData",
+    "effect",
+    "createEffects",
+    "patternDuration",
+    "clip",
+    "pattern"
+  ],
+  "sectionData": ["clipData", "effectData"],
+  "sectionGenotype": ["clipGenotype", "effectGenotype"],
+  "sectionTerms": ["sectionNatures"],
+  "seedPresets": [
+    "presetModel",
+    "instrumentPresetSeeders",
+    "patternPresetSeeders",
+    "trackPresetSeeders"
+  ],
+  "selectInstrumentPresets": ["instrumentPreset", "selectPresets"],
+  "selectPatternPresets": ["patternPreset", "selectPresets"],
+  "selectPresets": ["presetModel", "preset", "times", "getSelectedIndex"],
+  "selectTrackPresets": ["trackPreset", "selectPresets"],
+  "separateArray.test": ["vitest", "separateArray"],
+  "sequencer": ["note", "$wondrous", "getFrame", "getNoteDto", "loop"],
+  "sequencerStore": ["sequencer", "store", "wondrousStore"],
+  "setArrayContent.test": ["vitest", "setArrayContent"],
+  "setAuthorizationCookie": ["kit", "createJwt"],
+  "setChannelOfInstrument": ["command", "editor"],
+  "setChannelOfInstrument.test": [
+    "instrumentData",
+    "getBlankEditor",
+    "vitest",
+    "setChannelOfInstrument"
+  ],
+  "setChannelOfPattern": ["command", "editor"],
+  "setChannelOfPattern.test": [
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "setChannelOfPattern"
+  ],
+  "setDuration": ["newControl", "notesEffect"],
+  "setDuration.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "setDuration",
+    "notesEffect"
+  ],
+  "setInstrumentVolume": ["command", "editor"],
+  "setInstrumentVolume.test": [
+    "instrumentData",
+    "getBlankEditor",
+    "vitest",
+    "setInstrumentVolume"
+  ],
+  "setMasterVolume": ["command", "editor"],
+  "setMasterVolume.test": [
+    "masterData",
+    "getBlankEditor",
+    "vitest",
+    "setMasterVolume"
+  ],
+  "setNewPosition": ["graphView", "setNewX", "setNewY"],
+  "setNewX": ["nodeView", "nodeWidth"],
+  "setNewY": ["nodeView"],
+  "setPatternIsMuted": ["command", "editor"],
+  "setPatternIsMuted.test": [
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "setPatternIsMuted"
+  ],
+  "setPatternIsSoloed": ["command", "editor"],
+  "setPatternIsSoloed.test": [
+    "patternData",
+    "getBlankEditor",
+    "vitest",
+    "setPatternIsSoloed"
+  ],
+  "shiftOneBar": ["notesEffect"],
+  "shiftOneBar.test": [
+    "note",
+    "vitest",
+    "fromDetails",
+    "notesEffect",
+    "shiftOneBar"
+  ],
+  "shortcutHandler": ["isTargetInput"],
+  "shortcutHandlerStore": [
+    "navigation",
+    "invert",
+    "store",
+    "instrumentsHref",
+    "patternsHref",
+    "projectIdStore",
+    "editorStore",
+    "isPlayingStore",
+    "shortcutHandler"
+  ],
+  "sideChain": [
+    "separateArray",
+    "sumNodes",
+    "newControl",
+    "graphEffect",
+    "hashToU32",
+    "$wondrous",
+    "getControlNodes",
+    "masterGraphStage"
+  ],
+  "signIn": ["newId", "getGoogleUserData", "userModel"],
+  "sine": ["graphEffect", "$wondrous", "toneGraphStage"],
+  "sound": ["soundData", "effect", "createEffects"],
+  "soundData": ["effectData"],
+  "soundEffectClasses": [
+    "cyclicPerlinNoise",
+    "perlinNoise",
+    "poppingNoise",
+    "whiteNoise",
+    "pulse",
+    "sawtooth",
+    "sine",
+    "square",
+    "triangle"
+  ],
+  "soundGenotype": ["effectGenotype"],
+  "square": ["graphEffect", "$wondrous", "toneGraphStage"],
+  "staccato": ["newControl", "notesEffect"],
+  "staccato.test": ["note", "vitest", "fromDetails", "staccato", "notesEffect"],
+  "startedAtStore": ["store"],
+  "stoppedAtStore": ["store"],
+  "streamModel": ["mongoose", "streamSchema"],
+  "streamSchema": ["mongoose", "required", "stream"],
+  "strum": ["newControl", "notesEffect", "getStackedNotes"],
+  "strum.test": ["note", "vitest", "fromDetails", "notesEffect", "strum"],
+  "sumNodes": ["$wondrous", "$wondrous"],
+  "sumNodes.test": ["mockNewId", "$wondrous", "vitest", "sumNodes"],
+  "swing": ["newControl", "notesEffect", "addSwing"],
+  "swing.test": ["note", "vitest", "fromDetails", "notesEffect", "swing"],
+  "synth": [
+    "hashToU32",
+    "side",
+    "$wondrous",
+    "graphStage",
+    "graph",
+    "instrument",
+    "synthData",
+    "tone"
+  ],
+  "synthData": ["graphData"],
+  "synthGraphEffectClasses": ["reverb"],
+  "tempo": ["newControl", "notesEffect"],
+  "tempo.test": ["note", "vitest", "fromDetails", "notesEffect", "tempo"],
+  "test": ["test"],
+  "timeSourceStore": [
+    "store",
+    "timeSource",
+    "audioContextStore",
+    "isPlayingStore",
+    "loopStore",
+    "startedAtStore",
+    "stoppedAtStore"
+  ],
+  "timeline": ["trackData"],
+  "times.test": ["vitest", "times"],
+  "toTensorEqual": ["tfjs", "vitest", "arrayEqualValues"],
+  "toTensorEqual.test": ["tfjs", "vitest", "toTensorEqual"],
+  "tone": ["$wondrous", "toneGraphStage", "graph", "sound", "sumNodes"],
+  "toneGraphEffectClasses": [
+    "amplitudeEnvelope",
+    "filterSlide",
+    "velocityAmplitude",
+    "frequencyOscillation",
+    "glide",
+    "pitchSlide"
+  ],
+  "toneGraphStage": ["$wondrous", "graphStage"],
+  "toolExpandStore": ["store"],
+  "track": [
+    "trackData",
+    "master",
+    "instrument",
+    "note",
+    "patternDuration",
+    "ensemble"
+  ],
+  "trackData": ["ensembleData", "instrumentData", "masterData"],
+  "trackGenotype": ["ensembleGenotype", "instrumentGenotype", "masterGenotype"],
+  "trackPreset": ["trackGenotype", "preset"],
+  "trackPresetSeeders": ["trackPreset", "getBlankDate"],
+  "trackStore": ["getTrackData", "track", "store", "editorStore"],
+  "trackTerms": [
+    "channels",
+    "elementsTerms",
+    "effectTerms",
+    "ensembleTerms",
+    "patternTerms",
+    "sectionTerms"
+  ],
+  "trackVocabulary": ["getVocabulary", "trackTerms"],
+  "trainEvaluator": [
+    "getAllProjects",
+    "tfjs",
+    "@tensorflow/tfjs-node-gpu",
+    "mongoose",
+    "createEvaluator",
+    "connectToDatabase",
+    "createEvaluatorTrainer",
+    "createProjectsMatchIterator"
+  ],
+  "triangle": ["graphEffect", "$wondrous", "toneGraphStage"],
+  "undo": ["command", "editor"],
+  "undo.test": ["getBlankEditor", "vitest", "command", "undo"],
+  "updateEffect": ["command", "editor"],
+  "updateEffect.test": [
+    "effectData",
+    "getBlankEditor",
+    "vitest",
+    "updateEffect"
+  ],
+  "userModel": ["mongoose", "userSchema"],
+  "userSchema": ["user", "mongoose", "required"],
+  "userStore": ["user", "store"],
+  "velocityAmplitude": ["graphEffect", "graphStage", "$wondrous"],
+  "volume": [
+    "newControl",
+    "getControlNodes",
+    "graphEffect",
+    "graphStage",
+    "$wondrous"
+  ],
+  "whiteNoise": ["graphEffect", "$wondrous", "toneGraphStage"],
+  "withTension.test": ["vitest", "withTension"],
+  "withoutTension.test": ["vitest", "withoutTension"],
+  "wondrousStore": ["$wondrous", "store"],
+  "wondrousWorkletNodeStore": ["store"],
+  "zoomStore": ["store"]
+}
