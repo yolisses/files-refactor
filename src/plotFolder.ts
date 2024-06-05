@@ -22,6 +22,7 @@ function plotFolderStep(folder: Folder, parentCluster: Graph) {
 
 export function plotFolder(folder: Folder) {
   const g = digraph("G");
+  g.setNodeAttribut("shape", "box");
   plotFolderStep(folder, g);
 
   const allFiles = getAllFiles(folder);
