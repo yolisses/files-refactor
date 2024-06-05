@@ -19,9 +19,8 @@ export function lintFileStructure(files: FileNode[]) {
 
   const links = getLinks(files);
   links.forEach((link) => {
-    const { importer, imported } = link;
-    const importerClone = clones.get(importer);
-    const importedClone = clones.get(imported);
+    const importerClone = clones.get(link.importer);
+    const importedClone = clones.get(link.imported);
 
     importerClone.addImport(importedClone);
 
