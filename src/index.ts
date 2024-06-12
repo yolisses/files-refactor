@@ -1,15 +1,24 @@
 import { readFileSync } from "fs";
-import { createRandomFileStructure } from "./createRandomFileStructure";
 import { FileNode } from "./fileNode";
 import { Folder } from "./folder";
-import { getAllFiles } from "./getAllFiles";
 import { lintFileStructure } from "./lintFileStructure";
+import { loopFiles } from "./loop";
 import { plotFolder } from "./plotFolder";
 
 function run() {
-  let root = createRandomFileStructure();
-  const allFiles = getAllFiles(root);
-  root = lintFileStructure(allFiles);
+  // let root = createRandomFileStructure();
+  // const allFiles = getAllFiles(root);
+  const allFiles = loopFiles;
+  console.dir(
+    allFiles.map((file) => {
+      return {
+        name: file.name,
+        imports: file.getImports().map((imp) => imp.name),
+        importedBy: file.getImportedBy().map((imp) => imp.name),
+      };
+    })
+  );
+  const root = lintFileStructure(allFiles);
   const g = plotFolder(root);
   g.output("svg", "example.svg");
 }
@@ -48,6 +57,6 @@ function run2() {
   g.output("svg", "example.svg");
 }
 
-run2();
+run();
+// run2();
 console.log("done");
-// run();
