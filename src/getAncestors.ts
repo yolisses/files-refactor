@@ -4,7 +4,6 @@ export function getAncestors(folder: Folder) {
   const ancestors: Folder[] = [folder];
   let parent = folder.getParent();
   while (parent) {
-    console.log(parent.name);
     ancestors.push(parent);
     parent = parent.getParent();
   }

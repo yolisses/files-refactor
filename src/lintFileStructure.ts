@@ -31,6 +31,9 @@ export function lintFileStructure(files: FileNode[]) {
 
     const destination = commonAncestor as Folder;
     if (destination !== importedClone.getParent()) {
+      console.log(
+        `Moving ${importedClone.getParent().name} to ${destination.name}`
+      );
       importedClone.getParent().move(destination);
     }
   });

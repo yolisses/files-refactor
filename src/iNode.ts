@@ -5,9 +5,15 @@ export abstract class INode {
   constructor(public name: string) {}
 
   bareSetParent(parent: Folder | null) {
-    if ((parent as INode) === this) {
-      throw new Error("INode cannot be its own parent");
+    // check if would create a circular reference
+    let ancestor = parent;
+    while (ancestor) {
+      if (ancestor === (this as any)) {
+        throw new Error("Creating a circular reference");
+      }
+      ancestor = ancestor.getParent();
     }
+
     this.parent = parent;
   }
 
